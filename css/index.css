@@ -1,0 +1,42 @@
+header, footer {
+    background-color: lightblue;
+    height: 150px;
+    text-align: center;
+    clear: both;
+    line-height: 150px;
+}
+
+section {
+    float: left;
+    width: 70%;
+    background-color: #dddddd;
+}
+
+article {
+    border: 1px dimgray solid;
+    padding: 15px;
+    margin: 15px;
+    background-color: white;
+}
+
+aside {
+    float: left;
+    width: 30%;;
+}
+
+aside a {
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+}
+
+@media (max-width: 499px) {
+    section{
+        float: none;
+        width: auto;
+    }
+    aside{
+        float: none;
+        width: auto;
+    }
+}
