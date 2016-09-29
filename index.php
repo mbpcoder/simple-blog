@@ -12,23 +12,21 @@
         <a href="programming.html">Programming With PHP</a>
         <a href="website.html">WebSite</a>
         <a href="book.html">Book</a>
-        <a href="aout.html">About</a>
+        <a href="about.html">About</a>
     </aside>
     <section class="articles">
         <?php
-        $connection = mysqli_connect('localhost', 'root', '2110', 'student_blog');
-        $sql = 'SELECT * FROM posts';
-        $result = mysqli_query($connection, $sql);
+        require_once './lib/database.php';
+        $posts = post_all();
         $html = '';
-        while ($post = mysqli_fetch_assoc($result)) {
-            $article = '<article>';
-            $article .= "<h4>{$post['title']}</h4><hr/>";
-            $article .= $post['body'];
-            $article .= '</article>';
-            $html .= $article;
+        foreach ($posts as $post) {
+          $article = '<article>';
+          $article .= "<h4>{$post['title']}</h4><hr/>";
+          $article .= $post['body'];
+          $article .= '</article>';
+          $html .= $article;
         }
         echo $html;
-        mysqli_close($connection);
         ?>
     </section>
 </div>
