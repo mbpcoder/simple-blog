@@ -1,0 +1,14 @@
+label {
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+}
+
+div {
+    margin: 5px;
+    width: 500px;
+}
+
+input[type='text'],input[type='email'],input[type='password'] {
+    width: calc(100% - 150px);
+}
