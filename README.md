@@ -13,3 +13,6 @@ I wrote this project in one of my classes. it took me 1:30 minute to write and e
   * list, create, update, delete user    
   * user login and logout
   * admin area protection
+
+# install 
+    just run install.php file it will create database and config file
