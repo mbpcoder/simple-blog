@@ -1,0 +1,16 @@
+div {
+    width: 100%;
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    border: 1px lightgray solid;;
+    text-align: center;
+    margin: 0 auto;
+}
+div.links{
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+}
