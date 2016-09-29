@@ -1,5 +1,15 @@
-# The Simplest Blog Ever
+The Simplest Blog Ever
+============
 
-for learning php language
+It's a functional blogging  system for learning php language
 
-I wrote this project in one of my classes. it took me 1:30 hour to write  and explaine it to student.
+I plan to write an OOP version too.
+
+I wrote this project in one of my classes. it took me 1:30 minute to write and explain it to student.
+
+## Features  
+  * install script
+  * list, create, update, delete post    
+  * list, create, update, delete user    
+  * user login and logout
+  * admin area protection
