@@ -10,12 +10,12 @@
     <h3>Posts Grid</h3>
     <div class="links">
         <a href="create.php">Create New Post</a>
+        <a href="/admin/index.php">Admin Dashboard</a> 
     </div>
     <br>
     <?php
-    $connection = mysqli_connect('localhost', 'root', '2110', 'student_blog');
-    $sql = 'SELECT * FROM posts';
-    $result = mysqli_query($connection, $sql);
+    require_once '../../lib/database.php';
+    $posts = post_all();
     $table = '<table>';
     $table .= '
     <tr>
@@ -26,20 +26,21 @@
         <th>Created At</th>
         <th>Actions</th>
     </tr>';
-    while ($post = mysqli_fetch_assoc($result)) {
-        $table .= "
-    <tr>
-        <td>{$post['id']}</td>
-        <td>{$post['title']}</td>
-        <td>{$post['body']}</td>
-        <td>{$post['user_id']}</td>
-        <td>{$post['created_at']}</td>
-        <td><a href=\"update.php?id={$post['id']}\">Update</a> <a href='delete.php?id={$post['id']}'>Delete</a></td>
-    </tr>";
+
+    foreach ($posts as $post) {
+      $table .= "
+            <tr>
+                <td>{$post['id']}</td>
+                <td>{$post['title']}</td>
+                <td>{$post['body']}</td>
+                <td>{$post['user_id']}</td>
+                <td>{$post['created_at']}</td>
+                <td><a href=\"update.php?id={$post['id']}\">Update</a> <a href='delete.php?id={$post['id']}'>Delete</a></td>
+            </tr>";
     }
+
     $table .= '<table>';
     echo $table;
-    mysqli_close($connection);
     ?>
 </div>
 </body>

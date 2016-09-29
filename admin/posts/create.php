@@ -1,10 +1,11 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user_id = 1;
-    $connection = mysqli_connect('localhost', 'root', '2110', 'student_blog');
-    $sql = "INSERT INTO posts (`title`, `body`, `user_id`) VALUES ('" . $_POST['title'] . "', '" . $_POST['body'] . "', '" . $user_id . "')";
-    mysqli_query($connection, $sql);
-    mysqli_close($connection);
+    require_once '../../lib/database.php';
+    $post = [];
+    $post['user_id'] = 1;
+    $post['title'] = $_POST['title'];
+    $post['body'] = $_POST['body'];
+    post_insert($post);
     header('location:index.php');
 }
 ?>

@@ -1,18 +1,11 @@
 <?php
+require_once '../../lib/database.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user_id = 1;
-    $connection = mysqli_connect('localhost', 'root', '2110', 'student_blog');
-    $sql = "UPDATE posts SET title='{$_POST['title']}', body='{$_POST['body']}' WHERE id={$_POST['id']}";
-    mysqli_query($connection, $sql);
-    mysqli_close($connection);
+    post_update($_POST);
     header('location:index.php');
 } elseif ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
     $id = $_GET['id'];
-    $connection = mysqli_connect('localhost', 'root', '2110', 'student_blog');
-    $sql = 'SELECT * FROM posts WHERE id=' . $id;
-    $result = mysqli_query($connection, $sql);
-    $post = mysqli_fetch_assoc($result);
-    mysqli_close($connection);
+    $post = post_find_by_id($id);
 } else {
     header('location:index.php');
 }
@@ -22,11 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Post</title>
+    <title>Update Post</title>
     <link rel="stylesheet" href="../../css/admin/posts/create.css">
 </head>
 <body>
-<form action="create.php" method="post">
+<form action="update.php" method="post">
     <input type="hidden" name="id" value="<?php echo $post['id'] ?>">
     <div>
         <label for="title">title: </label>
