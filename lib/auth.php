@@ -1,17 +1,18 @@
 <?php
-include_once 'utility.php';
 session_start();
+
+require_once 'utility.php';
+require_once 'database.php';
+
 function login($email, $password)
 {
-    $success = false;
-    $connection = mysqli_connect('localhost', 'root', '2110', 'student_blog');
-    $sql = "SELECT * FROM users WHERE email='{$email}' AND password='{$password}'";
-    $result = mysqli_query($connection, $sql);
-    if ($user = mysqli_fetch_assoc($result)) {
-        $success = true;
-        $_SESSION['username'] = hash_make($email);
-    }
-    mysqli_close($connection);
+  $success = false;
+
+  $user = user_find_by_email_and_password($email, $password);
+  if($user){
+      $_SESSION['username'] = hash_make($email);
+      $success = true;
+  }
     return $success;
 }
 
@@ -32,4 +33,5 @@ function login_check()
 
 function login_user()
 {
+  
 }
