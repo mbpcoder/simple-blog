@@ -1,8 +1,8 @@
 <?php
 
-include_once '../lib/auth.php';
+require_once '../../lib/auth.php';
 if (!login_check()) {
-    header('location:login.php');
+    header('location:../login.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
