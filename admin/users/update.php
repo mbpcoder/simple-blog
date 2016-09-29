@@ -1,4 +1,9 @@
 <?php
+include_once '../lib/auth.php';
+if (!login_check()) {
+    header('location:login.php');
+}
+
 require_once '../../lib/database.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     user_update($_POST);

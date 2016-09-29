@@ -1,3 +1,9 @@
+<?php
+include_once '../lib/auth.php';
+if (!login_check()) {
+    header('location:login.php');
+}
+ ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,7 +16,7 @@
     <h3>Posts Grid</h3>
     <div class="links">
         <a href="create.php">Create New Post</a>
-        <a href="/admin/index.php">Admin Dashboard</a> 
+        <a href="/admin/index.php">Admin Dashboard</a>
     </div>
     <br>
     <?php
