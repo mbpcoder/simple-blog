@@ -29,6 +29,7 @@ if (!login_check()) {
         <th>title</th>
         <th>body</th>
         <th>User</th>
+        <th>Category</th>
         <th>Created At</th>
         <th>Actions</th>
     </tr>';
@@ -40,6 +41,7 @@ if (!login_check()) {
                 <td>{$post['title']}</td>
                 <td>{$post['body']}</td>
                 <td>{$post['user_id']}</td>
+                <td>{$post['category_id']}</td>
                 <td>{$post['created_at']}</td>
                 <td><a href=\"update.php?id={$post['id']}\">Update</a> <a href='delete.php?id={$post['id']}'>Delete</a></td>
             </tr>";

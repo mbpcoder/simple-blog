@@ -3,8 +3,8 @@ require_once '../../lib/auth.php';
 if (!login_check()) {
     header('location:../login.php');
 }
-
 require_once '../../lib/database.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     post_update($_POST);
     header('location:index.php');
@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     header('location:index.php');
 }
+$categories = category_all();
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +30,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div>
         <label for="title">title: </label>
         <input type="text" name="title" id="title" value="<?php echo $post['title'] ?>">
+    </div>
+    <div>
+        <label for="category_id">Category: </label>
+        <select name="category_id" id="category_id">
+            <option value="0">Select A Category</option>
+            <?php
+            $html = '';
+            foreach ($categories as $category) {
+                if ($category['id'] == $post['category_id']) {
+                    $html .= "<option selected value='{$category['id']}'>{$category['name']}</option>";
+                }else{
+                    $html .= "<option value='{$category['id']}'>{$category['name']}</option>";
+                }
+            }
+            echo $html;
+            ?>
+        </select>
     </div>
     <div>
         <label for="body">body: </label>

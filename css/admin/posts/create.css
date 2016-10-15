@@ -9,6 +9,6 @@ div {
     width: 500px;
 }
 
-input[type='text'], textarea {
+input[type='text'], textarea, select {
     width: calc(100% - 100px);
 }

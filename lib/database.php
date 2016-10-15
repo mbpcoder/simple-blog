@@ -6,7 +6,7 @@ require_once 'config.php';
 function post_insert($post)
 {
     $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-    $sql = "INSERT INTO posts (`title`, `body`, `user_id`) VALUES ('" . $post['title'] . "', '" . $post['body'] . "', '" . $post['user_id'] . "')";
+    $sql = "INSERT INTO posts (`title`, `body`, `user_id`, `category_id`) VALUES ('" . $post['title'] . "', '" . $post['body'] . "', '" . $post['user_id'] . "', '" . $post['category_id']. "')";
     mysqli_query($connection, $sql);
     mysqli_close($connection);
 }
@@ -14,7 +14,7 @@ function post_insert($post)
 function post_update($post)
 {
   $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-  $sql = "UPDATE posts SET title='{$post['title']}', body='{$post['body']}' WHERE id={$post['id']}";
+  $sql = "UPDATE posts SET title='{$post['title']}', body='{$post['body']}', category_id='{$post['category_id']}' WHERE id={$post['id']}";
   mysqli_query($connection, $sql);
   mysqli_close($connection);
 }
