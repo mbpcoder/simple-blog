@@ -17,11 +17,12 @@ if (!login_check()) {
 </head>
 <body>
 <header>
-    <h2>Admin Dashboardz</h2>
+    <h2>Admin Dashboard</h2>
+    <div><a href="logout.php">Logout</a></div>
 </header>
 <div class="container">
-    <a href="logout.php">Logout</a>
     <div><a href="posts/index.php">Posts</a></div>
+    <div><a href="categories/index.php">Categories</a></div>
     <div><a href="users/index.php">Users</a></div>
 </div>
 </body>

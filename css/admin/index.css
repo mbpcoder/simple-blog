@@ -16,9 +16,13 @@
 }
 header{
     height: 100px;
-    line-height: 100px;
     text-align: center;
     background-color: rgba(10, 140, 255, 0.09);
     margin-bottom: 50px;
-
+}
+header h2{
+    padding-top: 30px;
+}
+header div{
+    text-align: left;
 }
