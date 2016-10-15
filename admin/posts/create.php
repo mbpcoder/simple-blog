@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div>
         <label></label>
         <input type="submit" value="Save Post">
-        <a href="index.php">Cancle</a>
+        <a href="index.php">Cancel</a>
     </div>
 </form>
 </body>

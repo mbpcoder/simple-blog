@@ -50,6 +50,55 @@ function post_find_by_id($id)
   return $post;
 }
 
+// Category
+
+function category_insert($category)
+{
+    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+    $sql = "INSERT INTO categories (`name`, `user_id`) VALUES ('" . $category['name'] . "', '" . $category['user_id'] . "')";
+    mysqli_query($connection, $sql);
+    mysqli_close($connection);
+}
+
+function category_update($category)
+{
+    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+    $sql = "UPDATE categories SET name='{$category['name']}' WHERE id={$category['id']}";
+    mysqli_query($connection, $sql);
+    mysqli_close($connection);
+}
+
+function category_delete($id)
+{
+    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+    $sql = "DELETE FROM categories WHERE id=" . $id;
+    mysqli_query($connection, $sql);
+    mysqli_close($connection);
+}
+
+function category_all()
+{
+    $categories = [];
+    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+    $sql = 'SELECT * FROM categories';
+    $result = mysqli_query($connection, $sql);
+    while ($category = mysqli_fetch_assoc($result)) {
+        $categories[] = $category;
+    }
+    mysqli_close($connection);
+    return $categories;
+}
+
+function category_find_by_id($id)
+{
+    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+    $sql = 'SELECT * FROM categories WHERE id=' . $id;
+    $result = mysqli_query($connection, $sql);
+    $post = mysqli_fetch_assoc($result);
+    mysqli_close($connection);
+    return $post;
+}
+
 // User
 
 function user_insert($user)
