@@ -11,8 +11,10 @@ I wrote this project in one of my classes. it took me 1:30 minute to write and e
   * install script
   * list, create, update, delete post    
   * list, create, update, delete user    
+  * list, create, update, delete category    
   * user login and logout
   * admin area protection
+  * index page with category filter
 
 # install 
     just run install.php file it will create database and config file
