@@ -1,3 +1,15 @@
+<?php
+require_once './lib/database.php';
+if (isset($_GET['category'])) {
+    $posts = post_find_by_category_id($_GET['category']);
+} else {
+    $posts = post_all();
+}
+
+$categories = category_all();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,22 +21,24 @@
 <header>Simple Responsive blog</header>
 <div class="content">
     <aside>
-        <a href="programming.html">Programming With PHP</a>
-        <a href="website.html">WebSite</a>
-        <a href="book.html">Book</a>
-        <a href="about.html">About</a>
+        <?php
+        $html = '';
+        foreach ($categories as $category) {
+            $html .= "<a href='index.php?category={$category['id']}'>{$category['name']}</a>";
+        }
+        echo $html;
+        ?>
+
     </aside>
     <section class="articles">
         <?php
-        require_once './lib/database.php';
-        $posts = post_all();
         $html = '';
         foreach ($posts as $post) {
-          $article = '<article>';
-          $article .= "<h4>{$post['title']}</h4><hr/>";
-          $article .= $post['body'];
-          $article .= '</article>';
-          $html .= $article;
+            $article = '<article>';
+            $article .= "<h4>{$post['title']}</h4><hr/>";
+            $article .= $post['body'];
+            $article .= '</article>';
+            $html .= $article;
         }
         echo $html;
         ?>
