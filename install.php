@@ -30,40 +30,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                           ) DEFAULT CHARSET=utf8";
     $sql_insert_posts = "INSERT INTO `posts` (`id`, `title`, `body`, `user_id`, `category_id`) VALUES (1, 'Test Title', 'Test Post Body', 1, 1);";
 
+    $messages = [];
+
     if (mysqli_query($connection, $sql_create_users)) {
-        echo "Table users created successfully<br/>";
+        $messages['create_users_table'] = "Table users created successfully<br/>";
     } else {
-        echo "<pre>Error creating users table: " . mysqli_error($connection) . '</pre>';
+        $messages['create_users_table'] = "<p>Error creating users table: " . mysqli_error($connection) . '</p>';
     }
 
     if (mysqli_query($connection, $sql_insert_users)) {
-        echo "Table users inserted successfully<br/>";
+        $messages['insert_users_table'] = "Table users inserted successfully<br/>";
     } else {
-        echo "<pre>Error inserting users table: " . mysqli_error($connection) . '</pre>';
+        $messages['insert_users_table'] = "<p>Error inserting users table: " . mysqli_error($connection) . '</p>';
     }
 
     if (mysqli_query($connection, $sql_create_categories)) {
-        echo "Table categories created successfully<br/>";
+        $messages['create_categories_table'] = "Table categories created successfully<br/>";
     } else {
-        echo "<pre>Error creating categories table: " . mysqli_error($connection) . '</pre>';
+        $messages['create_categories_table'] = "<p>Error creating categories table: " . mysqli_error($connection) . '</p>';
     }
 
     if (mysqli_query($connection, $sql_insert_categories)) {
-        echo "Table categories inserted successfully<br/>";
+        $messages['insert_categories_table'] = "Table categories inserted successfully<br/>";
     } else {
-        echo "<pre>Error inserting categories table: " . mysqli_error($connection) . '</pre>';
+        $messages['insert_categories_table'] = "<p>Error inserting categories table: " . mysqli_error($connection) . '</p>';
     }
 
     if (mysqli_query($connection, $sql_create_posts)) {
-        echo "Table posts created successfully<br/>";
+        $messages['create_posts_table'] = "Table posts created successfully<br/>";
     } else {
-        echo "<pre>Error creating posts table: " . mysqli_error($connection) . '</pre>';
+        $messages['create_posts_table'] = "<p>Error creating posts table: " . mysqli_error($connection) . '</p>';
     }
 
     if (mysqli_query($connection, $sql_insert_posts)) {
-        echo "Table posts inserted successfully<br/>";
+        $messages['insert_posts_table'] = "Table posts inserted successfully<br/>";
     } else {
-        echo "<pre>Error inserting posts table: " . mysqli_error($connection) . '</pre>';
+        $messages['insert_posts_table'] = "<p>Error inserting posts table: " . mysqli_error($connection) . '</p>';
     }
 
     mysqli_close($connection);
@@ -87,27 +89,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="css/install.css">
 </head>
 <body>
-<form action="install.php" method="post">
-    <div>
-        <label for="db_host">Database Host: </label>
-        <input type="text" name="db_host" id="db_host" value="localhost">
+
+<?php if (isset($messages)): ?>
+    <div class="messages">
+        <?php
+        foreach ($messages as $message) {
+            echo "<p>{$message}</p>";
+        }        
+        ?>
+        <a href="index.php">Go To Home Page</a>
     </div>
-    <div>
-        <label for="db_name">Database Name: </label>
-        <input type="text" name="db_name" id="db_name" value="simple-blog">
-    </div>
-    <div>
-        <label for="db_user">Database User: </label>
-        <input type="text" name="db_user" id="db_user" value="root">
-    </div>
-    <div>
-        <label for="db_password">Database Password: </label>
-        <input type="password" name="db_password" id="db_password" value="">
-    </div>
-    <div>
-        <label></label>
-        <input type="submit" value="Install Simple Blog">
-    </div>
-</form>
+<?php else: ?>
+    <form action="install.php" method="post">
+        <div class="form-control">
+            <label for="db_host">Database Host: </label>
+            <input type="text" name="db_host" id="db_host" value="localhost">
+        </div>
+        <div class="form-control">
+            <label for="db_name">Database Name: </label>
+            <input type="text" name="db_name" id="db_name" value="simple-blog">
+        </div>
+        <div class="form-control">
+            <label for="db_user">Database User: </label>
+            <input type="text" name="db_user" id="db_user" value="root">
+        </div>
+        <div class="form-control">
+            <label for="db_password">Database Password: </label>
+            <input type="password" name="db_password" id="db_password" value="">
+        </div>
+        <div class="form-control">
+            <label></label>
+            <input type="submit" value="Install Simple Blog">
+        </div>
+    </form>
+<?php endif; ?>
+
 </body>
 </html>

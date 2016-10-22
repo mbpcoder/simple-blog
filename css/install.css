@@ -4,11 +4,17 @@ label {
     text-align: right;
 }
 
-div {
+div.form-control {
     margin: 5px;
     width: 500px;
 }
 
-input[type='text'],input[type='email'],input[type='password'] {
+input[type='text'], input[type='email'], input[type='password'] {
     width: calc(100% - 150px);
+}
+.messages{
+    text-align: center;
+}
+.messages p, .messages pre {
+    text-align: center;
 }
